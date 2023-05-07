@@ -1,0 +1,46 @@
+{% extends 'bootstrap4/base.html' %}
+
+{% block head %}
+    <link href="../static/css/styles.css" rel="stylesheet" />
+    <script src="https://kit.fontawesome.com/7acde26223.js" crossorigin="anonymous"></script>
+{% endblock %}
+
+{% block content %}
+
+<body>
+    <div class="limite">
+        <h1>My Library</h1>
+            {% if not books %}
+                <p>No hay libros</p>
+            {% else  %}
+                    <table>
+                        <thead>
+                            <tr class="table-head">
+                                <th class="column-1">ID</th>
+                                <th class="column-2">Title</th>
+                                <th class="column-3">Author</th>
+                                <th class="column-4">Rating 0/10.0</th>
+                                <th class="column-5">Edit rating</th>
+                                <th class="column-6">Delete</th>
+                            </tr>
+                        </thead>
+
+                    {% for book in books %}
+                        <tbody>
+                            <tr class="columnas_informacion">
+                                <td class="column-1">{{ book.id }}</td>
+                                <td class="column-2">{{ book.title }}</td>
+                                <td class="column-3">{{ book.author }}</td>
+                                <td class="column-4">{{ book.rating }}/10.0</td>
+                                <td class="column-5"><a href="{{ url_for('edit_prg', id=book.id) }}"><i class="fa-solid fa-pencil"></i></a></td>
+                                <td class="column-6"><a href="{{ url_for('delete', id=book.id) }}" title="Delete Book"><i class="fa-solid fa-trash"></i></a></td>
+                            </tr>
+                    {% endfor %}
+                        </tbody>
+                    </table>
+            {% endif %}
+        <h2><a class="add_books" href="{{ url_for('add') }}">Add New Book</a></h2>
+    </div>
+</body>
+
+{% endblock %}

@@ -1,0 +1,46 @@
+{% extends 'bootstrap4/base.html' %}
+
+{% block head %}
+        <link href="../static/css/styles.css" rel="stylesheet" />
+        <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+{% endblock %}
+{% block content %}
+
+<body>
+<a href="{{ url_for('home') }}">Home</a>
+
+<h1>Add new books</h1>
+
+    <form method="POST" action="{{ url_for('add') }}" >
+
+        <div class="add_libros text-center">
+                  {{ form.bookName.label }}<br>
+                  {{ form.bookName() }}
+                  {{ form.csrf_token }}
+                  {% for error in form.bookName.errors %}
+                    <span style="color: red;">{{ error }}</span>
+                  {% endfor %}
+        </div>
+
+        <div class="add_libros text-center">
+                  {{ form.bookAuthor.label }}<br>
+                  {{ form.bookAuthor() }}
+                  {{ form.csrf_token }}
+                  {% for error in form.bookAuthor.errors %}
+                    <span style="color: red;">{{ error }}</span>
+                  {% endfor %}
+        </div>
+
+        <div class="add_libros text-center">
+                  {{ form.rating.label }}<br>
+                  {{ form.rating() }}
+                  {{ form.csrf_token }}
+                  {% for error in form.rating.errors %}
+                    <span style="color: red;">{{ error }}</span>
+                  {% endfor %}
+        </div>
+
+        <p class="add_libros" id="button">{{ form.submit(value="Enviar", class="btn") }}</p>
+    </form>
+</body>
+{% endblock %}

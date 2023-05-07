@@ -1,0 +1,35 @@
+{% extends 'bootstrap4/base.html' %}
+{% import "bootstrap4/wtf.html" as wtf %}
+
+{% block head %}
+        <link href="../static/css/styles.css" rel="stylesheet" />
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+{% endblock %}
+{% block content %}
+
+<body>
+<a href="{{ url_for('home') }}">Home</a>
+
+<h1>Edicion</h1>
+
+        <h2 class="h2_edits">Nombre del libro: {{ book.author }}</h2>
+        <h2 class="h2_edits">Current raiting: {{ book.rating }}</h2>
+
+        <form method="POST" action="{{ url_for('edit_prg', id=book.id) }}" >
+
+            <div class="add_libros">
+                  {{ form.rating.label }}
+                  {{ form.rating() }}
+                  {{ form.csrf_token }}
+                  {% if form.errors %}
+                        <div class="alert alert-danger">
+                  {{ form.errors }}
+    </div>
+{% endif %}
+        </div>
+
+        <p class="add_libros" id="button">{{ form.submit }}</p>
+    </form>
+</body>
+{% endblock %}

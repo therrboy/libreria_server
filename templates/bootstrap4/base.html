@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    {% block head %}
+		<title>{% block title %}Libreria{% endblock %}</title>
+		<meta charset="utf-8">
+		<meta name="viewport" content="width=device-width, initial-scale=1.0">
+		<link rel="stylesheet" href="{{ url_for('static', filename='"../static/css/styles.css"') }}">
+        <script src="https://kit.fontawesome.com/7acde26223.js" crossorigin="anonymous"></script>
+
+	{% endblock %}
+    <meta charset="UTF-8">
+
+    <style>
+    {% block styling %}
+
+    {% endblock %}
+    </style>
+</head>
+<body>
+    {% block content %}{% endblock %}
+    {% include 'footer.html' %}
+
+</body>
+
+</html>
